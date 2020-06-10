@@ -1,0 +1,23 @@
+ <!--CSS-->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+<!--JS-->
+ <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+<main class="main single" id="main">
+    <div class="main-inner">
+        <div id="mapid7465529" style="width:900px;height:400px" class="content"></div>
+        <script>
+            console.log("Loading map");
+            let zoom = 13;
+            //Create Map
+            var mymap = L.map('mapid7465529').setView([51.511551, 7.465529], zoom);
+            //Add tiles
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+        </script>
+    </div>
+</main>
