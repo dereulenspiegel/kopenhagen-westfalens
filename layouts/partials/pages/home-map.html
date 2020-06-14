@@ -8,9 +8,10 @@
    crossorigin=""></script>
 <main class="main single" id="main">
     <div class="main-inner">
-        <div id="mapid7465529" style="width:900px;height:400px" class="content"></div>
+        <div class="content home">
+            <div id="mapid7465529" style="width:100%;height:450px;z-index:-1"></div>
+        </div>
         <script>
-            console.log("Loading map");
             let zoom = 13;
             //Create Map
             var mymap = L.map('mapid7465529').setView([51.511551, 7.465529], zoom);
@@ -18,6 +19,19 @@
             L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
+
+            let markerURL = '/data/marker.json';
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", markerURL, true );
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    let markers = JSON.parse(xmlHttp.responseText);
+                    for(marker of markers) {
+                        console.log("Adding marker");
+                    }
+                }
+            };
+            xmlHttp.send( null );
         </script>
     </div>
 </main>
