@@ -17,4 +17,4 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUBTOKEN }}
           cname: kopenhagen-westfalens.de
-          args: --cleanDestinationDir --gc --minify
+          args: --cleanDestinationDir --gc --minify --debug --path-warnings --verbose
