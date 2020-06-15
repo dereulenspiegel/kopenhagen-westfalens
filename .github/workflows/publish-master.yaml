@@ -5,9 +5,7 @@ on:
 
 jobs:
   build:
-    # Job name is Greeting
     name: Build and deploy GH pages
-    # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -18,3 +16,4 @@ jobs:
         uses: chabad360/hugo-gh-pages@master
         with:
           githubToken: ${{ secrets.GITHUBTOKEN }}
+          cname: kopenhagen-westfalens.de
