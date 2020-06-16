@@ -962,7 +962,7 @@ enableRobotsTXT = true
     #       `gitinfo` in post’s Front Matter
     #       has a higher priority than here
 
-    repoURL = ""
+    repoURL = "https://github.com/dereulenspiegel/kopenhagen-westfalens"
     repoEditURL = ""
 
     gitIcon = "code-branch"
@@ -994,7 +994,7 @@ enableRobotsTXT = true
 
     shareOnTwitter = true
     shareOnFacebook = true
-    shareOnLinkedIn = true
+    shareOnLinkedIn = false
     shareOnTelegram = false
     shareOnWeibo = false
     shareOnDouban = false
