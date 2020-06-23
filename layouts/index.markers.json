@@ -1,15 +1,24 @@
 [
   {{- range $index, $page := where .Site.Pages "Content" "ne" ("" | safeHTML)  -}}
-  {{- if eq $page.Type "promise" }}
   {{- if $page.Params.Location -}}
   {
     "lat": "{{$page.Params.Location.Lat}}",
     "lon": "{{$page.Params.Location.Lon}}",
     "title": "{{$page.Title}}",
-    "state": "{{$page.Params.Promise}}",
-    "link": "{{$page.Permalink}}"
+    "link": "{{$page.Permalink}}",
+    {{- if $page.Params.versprechen -}}
+    {{- if eq $page.Params.versprechen "gebrochen"}}
+    "promise": "broken"
+    {{- else if eq $page.Params.versprechen "gehalten" -}}
+    "promise": "hold"
+    {{- else -}}
+    "promise": "tbd"
+    {{- end -}}
+    {{- end -}}
+    {{- if $page.Params.infra_problem -}}
+    "infra_problem": "{{$page.Params.infraProblem}}"
+    {{- end -}}
   }
-  {{- end -}}
   {{- end -}}
   {{- end -}}
 ]

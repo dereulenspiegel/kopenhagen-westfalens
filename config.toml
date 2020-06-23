@@ -82,7 +82,8 @@ enableRobotsTXT = true
 [taxonomies]
   category = "categories"
   tag = "tags"
-  promise = "promises"
+  Versprechen = "Versprechen"
+  infra_problem = "InfraProbleme"
 
 [menu]
     # Menu bar
