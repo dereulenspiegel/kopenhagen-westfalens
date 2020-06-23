@@ -82,10 +82,9 @@ func main() {
 
 func generatePageBundles(placemarks []*Placemark) {
 	for _, p := range placemarks {
-		log.Printf("Found placemark: %s Description: %s", p.Name, p.Description)
 		pageBundleFolderName := sanitizePlacemarkName(p.Name)
 		pageBundlePath := filepath.Join(*outPath, pageBundleFolderName)
-		if f, err := os.Stat(pageBundlePath); os.IsExist(err) && f.IsDir() {
+		if f, err := os.Stat(pageBundlePath); !os.IsNotExist(err) && f.IsDir() {
 			log.Printf("Page bundle for %s already exists, skipping", p.Name)
 			continue
 		}
@@ -115,7 +114,9 @@ func generateFrontMatter(placemark *Placemark) string {
 	frontmatter = frontmatter + "Date: " + time.Now().Format(time.RFC3339) + "\n"
 	frontmatter = frontmatter + "infra_problem: \"problem\"\n"
 	frontmatter = frontmatter + "source: mymaps\n"
-	coords := strings.Split(strings.ReplaceAll(placemark.Point.Coordinates, "\n", ""), ",")
+	coord := strings.ReplaceAll(placemark.Point.Coordinates, "\n", "")
+	coord = strings.ReplaceAll(coord, " ", "")
+	coords := strings.Split(coord, ",")
 	if len(coords) < 2 {
 		log.Fatalf("Coordinates (%s) have an invalid format", placemark.Point.Coordinates)
 	}
