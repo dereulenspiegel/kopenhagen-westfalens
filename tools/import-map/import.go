@@ -114,6 +114,8 @@ func generateFrontMatter(placemark *Placemark) string {
 	frontmatter = frontmatter + "Date: " + time.Now().Format(time.RFC3339) + "\n"
 	frontmatter = frontmatter + "infra_problem: \"problem\"\n"
 	frontmatter = frontmatter + "source: mymaps\n"
+	frontmatter = frontmatter + `tags: ["RadInfraDoChallenge","Twitter"]
+`
 	coord := strings.ReplaceAll(placemark.Point.Coordinates, "\n", "")
 	coord = strings.ReplaceAll(coord, " ", "")
 	coords := strings.Split(coord, ",")
