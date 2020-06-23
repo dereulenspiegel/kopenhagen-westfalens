@@ -16,7 +16,7 @@
     {{- end -}}
     {{- end -}}
     {{- if $page.Params.infra_problem -}}
-    "infra_problem": "{{$page.Params.infraProblem}}"
+    "infra_problem": "{{$page.Params.infra_problem}}"
     {{- end -}}
   }
   {{- end -}}
