@@ -44,7 +44,11 @@
                     let markers = JSON.parse(xmlHttp.responseText);
                     for(marker of markers) {
                         if(marker.infra_problem) {
-                            L.marker([marker.lat, marker.lon], {icon: problemIcon}).addTo(mymap);
+                            var mapMarker = L.marker([marker.lat, marker.lon], {
+                                icon: problemIcon,
+                                title: marker.title
+                            }).addTo(mymap);
+                            mapMarker.bindPopup("<a href=\""+marker.link+"\">"+marker.title+"</a>")
                         } else if(marker.promise) {
                             console.log('Promise markers not yet supported')
                         }
