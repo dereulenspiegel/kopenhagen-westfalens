@@ -231,10 +231,11 @@ enableRobotsTXT = true
     ######################################
     # Site Info
 
-    siteLogo = "/icons/apple-touch-icon.png"
+    #siteLogo = "/icons/apple-touch-icon.png"
+    siteLogo = "images/icon-1.png"
     # Note: used for JSON-LD, Open Graph
 
-    siteDescription = "Kopenhage Westfales soll die Stadt Dortmund an ihre Versprechen erinnern."
+    siteDescription = "Kopenhagen Westfalens soll die Stadt Dortmund an ihre Versprechen erinnern."
     # Note: used for HTML head meta, JSON-LD,
     #       Open Graph, Atom, RSS
 
