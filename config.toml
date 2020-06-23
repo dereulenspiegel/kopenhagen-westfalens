@@ -105,12 +105,12 @@ enableRobotsTXT = true
     #    weight = 3
     #    pre = "internal"
     #    post = "th"
-    #[[menu.main]]
-    #    url = "/tags/"
-    #    name = "Tags"
-    #    weight = 4
-    #    pre = "internal"
-    #    post = "tags"
+    [[menu.main]]
+        url = "/tags/"
+        name = "Tags"
+        weight = 4
+        pre = "internal"
+        post = "tags"
     [[menu.main]]
         url = "/page/about/"
         name = "About"
