@@ -18,17 +18,17 @@
         </div>
         <script>
             let zoom = 13;
-            var MarkerIconPromise = L.Icon.extend({
+            var MarkerIcon = L.Icon.extend({
                 options: {
-                    // TODO define shadow img
                     // shadowUrl: 'leaf-shadow.png',
-                    iconSize:     [38, 95],
-                    shadowSize:   [50, 64],
-                    iconAnchor:   [22, 94],
-                    shadowAnchor: [4, 62],
-                    popupAnchor:  [-3, -76]
+                    iconSize:     [38, 38],
+                    //shadowSize:   [50, 64],
+                    iconAnchor:   [22, 22],
+                    //shadowAnchor: [4, 62],
+                    //popupAnchor:  [-3, -76]
                 }
             });
+            var problemIcon = new MarkerIcon({iconUrl: '/images/forbidden-pngrepo-com.png'});
             //Create Map
             var mymap = L.map('mapid7465529').setView([51.511551, 7.465529], zoom);
             //Add tiles
@@ -43,7 +43,11 @@
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                     let markers = JSON.parse(xmlHttp.responseText);
                     for(marker of markers) {
-                        console.log("Adding marker");
+                        if(marker.infra_problem) {
+                            L.marker([marker.lat, marker.lon], {icon: problemIcon}).addTo(mymap);
+                        } else if(marker.promise) {
+                            console.log('Promise markers not yet supported')
+                        }
                     }
                 }
             };
