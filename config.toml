@@ -118,7 +118,13 @@ enableRobotsTXT = true
         pre = "internal"
         post = "user-circle"
     [[menu.main]]
+        url = "/page/contribute/"
+        name = "Mitmachen"
         weight = 6
+        pre = "internal"
+        post = "user-circle"
+    [[menu.main]]
+        weight = 7
         identifier = "search"
         post = "search"
     [[menu.main]]
