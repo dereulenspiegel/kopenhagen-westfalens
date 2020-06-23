@@ -1,5 +1,8 @@
 [
-  {{- range $index, $page := where .Site.Pages "Content" "ne" ("" | safeHTML)  -}}
+  {{- $locationPages := where .Site.Pages "Params.location" "!=" nil -}}
+  {{- range $index, $page := $locationPages -}}
+  {{- $postCount := len $locationPages -}}
+  {{- $postCount := sub $postCount 1 -}}
   {{- if $page.Params.Location -}}
   {
     "lat": "{{$page.Params.Location.Lat}}",
@@ -18,7 +21,7 @@
     {{- if $page.Params.infra_problem -}}
     "infra_problem": "{{$page.Params.infra_problem}}"
     {{- end -}}
-  }
+  }{{- if lt $index $postCount -}},{{- end -}}
   {{- end -}}
   {{- end -}}
 ]
