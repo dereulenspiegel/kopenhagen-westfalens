@@ -1,0 +1,32 @@
+name: Update from Maps
+on: # TODO use cron
+  schedule:
+  - cron:  '23 0 * * *'
+
+jobs:
+  download:
+    name: Download and import KMZ file
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false 
+        fetch-depth: 0
+    - name: Download KMZ file
+      uses: wei/curl@master
+      with:
+        args: -o fahrrad.kmz https://www.google.com/maps/d/kml?mid=1ndl82hSIvcXDZp5O7-jkA3ItGUT7zAdd
+    - name: Import from KMZ
+      uses: cedrickring/golang-action/go1.14@1.5.2
+      with:
+        args: go run tools/import-map/import.go -in fahrrad.kmz
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ./content/*
+        git commit -m "Updated from MyMaps" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUBTOKEN }}
