@@ -19,13 +19,13 @@ jobs:
     - name: Import from KMZ
       uses: cedrickring/golang-action/go1.14@1.5.2
       with:
-        args: go run tools/import-map/import.go -in fahrrad.kmz
+        args: sudo go run tools/import-map/import.go -in fahrrad.kmz
     - name: Commit files
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add ./content/*
-        git commit -m "Updated from MyMaps" -a
+        sudo git config --local user.email "action@github.com"
+        sudo git config --local user.name "GitHub Action"
+        sudo git add ./content/*
+        sudo git commit -m "Updated from MyMaps" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
