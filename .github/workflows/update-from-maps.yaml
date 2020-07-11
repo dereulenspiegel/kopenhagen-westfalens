@@ -19,7 +19,7 @@ jobs:
     - name: Import from KMZ
       uses: cedrickring/golang-action/go1.14@1.5.2
       with:
-        args: sudo go run tools/import-map/import.go -in fahrrad.kmz
+        args: go run tools/import-map/import.go -in fahrrad.kmz
     - name: Commit files
       run: |
         sudo git config --local user.email "action@github.com"
