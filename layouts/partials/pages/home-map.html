@@ -18,6 +18,37 @@
             <p>
                 Daten unter anderem von <a href="https://www.google.com/maps/d/u/0/viewer?mid=1ndl82hSIvcXDZp5O7-jkA3ItGUT7zAdd&ll=51.50820760000003%2C7.474564300000011&z=13">Dortmund | Probleme in der Radinfrastruktur</a>
             </p>
+            {{ $paginator := .Paginate (where (where .Site.RegularPages ".Type" "==" "post" ) "Params.source" "==" nil) }}
+            {{ range $paginator.Pages }}
+            <article class="content post home">
+                <h2 class="post-title">
+                    <a href="{{ .RelPermalink }}" class="summary-title-link">{{ (partial "utils/title.html" (dict "$" . "title" .LinkTitle)).htmlTitle }}</a>
+                </h2>
+                <summary class="summary">
+                    {{ partial "utils/summary.html" . }}
+                </summary>
+                {{ if .Truncated }}
+                    <div class="read-more-container">
+                        <a href="{{ .RelPermalink }}" class="read-more-link">{{ i18n "readMore" }} »</a>
+                    </div>
+                {{ end }}
+            </article>
+            {{ end }}
+
+            {{ if or $paginator.HasPrev $paginator.HasNext }}
+            <ul class="pagination">
+                {{ if $paginator.HasPrev }}
+                    <li class="pagination-prev">
+                        <a href="{{ $paginator.Prev.URL }}" rel="prev">&lt; {{ i18n "prevPage" }}</a>
+                    </li>
+                {{ end }}
+                {{ if $paginator.HasNext }}
+                    <li class="pagination-next">
+                        <a href="{{ $paginator.Next.URL }}" rel="next">{{ i18n "nextPage" }} &gt;</a>
+                    </li>
+                {{ end }}
+            </ul>
+            {{ end }}
         </div>
         <script>
             let zoom = 13;
